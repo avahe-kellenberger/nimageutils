@@ -39,27 +39,3 @@ proc rotateBySampling*(data: openArray[uint8], width, height: int, radians: floa
       if oldIndex >= 0 and oldIndex < data.len:
         result[newIndex] = data[oldIndex]
 
-converter c(a: array[7, int]): array[7, uint8] = 
-  for i, x in a:
-    result[i] = x.uint8
-
-if isMainModule:
-  const data: array[7, uint8] =
-    [
-      1, 1, 1, 1, 1, 1, 1
-    ]
-
-  let
-    # 45 degrees
-    radians = math.PI / 4
-    width = 7
-    height = 1
-    maxComponent = max(width, height)
-    rotated = rotateBySampling(data, width, height, radians)
-
-  for y in 0 ..< maxComponent:
-    var row = ""
-    for x in 0 ..< maxComponent:
-      row &= $rotated[y * maxComponent + x] & " "
-    echo row
-
