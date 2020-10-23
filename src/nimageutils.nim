@@ -16,8 +16,8 @@ proc rotateBySampling*(data: openArray[uint8], width, height: int, radians: floa
 
   result = newSeq[uint8](maxComponent * maxComponent)
 
-  for y in countup(0, maxComponent - 1):
-    for x in countup(0, maxComponent - 1):
+  for y in 0 ..< maxComponent:
+    for x in 0 ..< maxComponent:
       let
         dx = x.float - centerIndex
         dy = y.float - centerIndex
